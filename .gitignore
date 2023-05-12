@@ -1,3 +1,4 @@
-*.log
-*.deb
-
+*
+!*.sh
+!README.md
+!LICENSE
