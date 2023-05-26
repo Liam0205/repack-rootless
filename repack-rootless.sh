@@ -33,6 +33,8 @@ fi
 echo "Creating workspace"
 TEMPDIR_OLD="$(mktemp -d)"
 TEMPDIR_NEW="$(mktemp -d)"
+echo "OLD: $TEMPDIR_OLD"
+echo "NEW: $TEMPDIR_NEW"
 
 if [ ! -d "$TEMPDIR_OLD" ] || [ ! -d "$TEMPDIR_NEW" ]; then
 	echo "Creating temporary directories failed."
@@ -48,6 +50,9 @@ if [ -d "$TEMPDIR_OLD/var/jb" ]; then
     rm -rf "$TEMPDIR_OLD" "$TEMPDIR_NEW"
     exit 0;
 fi
+
+chmod 755 $TEMPDIR_OLD/DEBIAN/*
+chmod 644 $TEMPDIR_OLD/DEBIAN/control
 
 mkdir -p "$TEMPDIR_NEW"/var/jb
 cp -a "$TEMPDIR_OLD"/DEBIAN "$TEMPDIR_NEW"
